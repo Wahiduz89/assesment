@@ -1,207 +1,109 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useTheme } from '../context/ThemeContext';
 
-interface Product {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  image: string;
-}
+const Contact: React.FC = () => {
+  const { theme, getThemeClasses } = useTheme();
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
-const Home: React.FC = () => {
-  const { theme } = useTheme();
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch('https://fakestoreapi.com/products?limit=6')
-      .then(res => res.json())
-      .then(data => {
-        setProducts(data);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error('Error fetching products:', err);
-        setLoading(false);
-      });
-  }, []);
-
-  const getContainerClass = () => {
-    switch (theme) {
-      case 'theme1':
-        return 'bg-gray-50 min-h-screen font-sans';
-      case 'theme2':
-        return 'bg-gray-800 min-h-screen font-serif flex';
-      case 'theme3':
-        return 'bg-gradient-to-br from-yellow-100 to-pink-100 min-h-screen font-serif';
-      default:
-        return 'bg-gray-50 min-h-screen';
-    }
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const getMainClass = () => {
-    switch (theme) {
-      case 'theme1':
-        return 'pt-20 px-4 max-w-6xl mx-auto';
-      case 'theme2':
-        return 'flex-1 pt-20 px-6';
-      case 'theme3':
-        return 'pt-20 px-4 max-w-7xl mx-auto';
-      default:
-        return 'pt-20 px-4 max-w-6xl mx-auto';
-    }
-  };
-
-  const getTitleClass = () => {
-    switch (theme) {
-      case 'theme1':
-        return 'text-3xl font-light text-gray-800 mb-4';
-      case 'theme2':
-        return 'text-4xl font-bold text-white mb-6';
-      case 'theme3':
-        return 'text-4xl font-bold text-purple-800 mb-6 text-center';
-      default:
-        return 'text-3xl font-light text-gray-800 mb-4';
-    }
-  };
-
-  const getTextClass = () => {
-    switch (theme) {
-      case 'theme1':
-        return 'text-gray-600 leading-relaxed mb-6';
-      case 'theme2':
-        return 'text-gray-300 leading-loose mb-8 text-lg';
-      case 'theme3':
-        return 'text-purple-700 leading-relaxed mb-8 text-center text-lg';
-      default:
-        return 'text-gray-600 leading-relaxed mb-6';
-    }
-  };
-
-  const getButtonClass = () => {
-    switch (theme) {
-      case 'theme1':
-        return 'bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded transition-colors';
-      case 'theme2':
-        return 'bg-yellow-600 hover:bg-yellow-700 text-white px-8 py-3 rounded-lg text-lg font-semibold transition-all';
-      case 'theme3':
-        return 'bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white px-8 py-3 rounded-full text-lg font-bold shadow-lg transition-all transform hover:scale-105';
-      default:
-        return 'bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded transition-colors';
-    }
-  };
-
-  const getProductsClass = () => {
-    switch (theme) {
-      case 'theme1':
-        return 'mt-12 space-y-6';
-      case 'theme2':
-        return 'mt-16 space-y-8';
-      case 'theme3':
-        return 'mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8';
-      default:
-        return 'mt-12 space-y-6';
-    }
-  };
-
-  const getProductCardClass = () => {
-    switch (theme) {
-      case 'theme1':
-        return 'bg-white p-6 rounded-lg shadow-sm border hover:shadow-md transition-shadow';
-      case 'theme2':
-        return 'bg-gray-700 p-6 rounded-lg border border-gray-600 hover:bg-gray-600 transition-colors';
-      case 'theme3':
-        return 'bg-white p-6 rounded-2xl shadow-xl border-2 border-pink-200 hover:shadow-2xl hover:scale-105 transition-all transform';
-      default:
-        return 'bg-white p-6 rounded-lg shadow-sm border';
-    }
-  };
-
-  const getProductTitleClass = () => {
-    switch (theme) {
-      case 'theme1':
-        return 'text-lg font-medium text-gray-800 mb-2';
-      case 'theme2':
-        return 'text-xl font-bold text-white mb-3';
-      case 'theme3':
-        return 'text-xl font-bold text-purple-800 mb-3';
-      default:
-        return 'text-lg font-medium text-gray-800 mb-2';
-    }
-  };
-
-  const getProductTextClass = () => {
-    switch (theme) {
-      case 'theme1':
-        return 'text-gray-600 text-sm mb-3';
-      case 'theme2':
-        return 'text-gray-300 mb-4';
-      case 'theme3':
-        return 'text-purple-600 mb-4';
-      default:
-        return 'text-gray-600 text-sm mb-3';
-    }
-  };
-
-  const getSidebarClass = () => {
-    if (theme !== 'theme2') return 'hidden';
-    return 'w-64 bg-gray-900 border-r border-gray-700 p-6 pt-20';
-  };
-
-  const getSidebarItemClass = () => {
-    return 'block py-2 px-4 text-gray-300 hover:bg-gray-700 rounded mb-2 transition-colors';
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    alert('Message sent! (Demo only)');
+    setFormData({ name: '', email: '', message: '' });
   };
 
   return (
-    <div className={`transition-all duration-500 ${getContainerClass()}`}>
-      <div className={getSidebarClass()}>
-        <h3 className="text-white font-bold text-lg mb-4">Navigation</h3>
-        <a href="#" className={getSidebarItemClass()}>Dashboard</a>
-        <a href="#" className={getSidebarItemClass()}>Products</a>
-        <a href="#" className={getSidebarItemClass()}>Settings</a>
-        <a href="#" className={getSidebarItemClass()}>Help</a>
-      </div>
-
-      <main className={getMainClass()}>
-        <h1 className={getTitleClass()}>Welcome to ThemeApp</h1>
+    <div className={`transition-all duration-500 ${getThemeClasses('container')}`}>
+      {theme === 'theme2' && (
+        <div className="w-64 bg-gray-900 border-r border-gray-700 p-6 pt-20">
+          <h3 className="text-white font-bold text-lg mb-4">Contact Info</h3>
+          <a href="#" className="block py-2 px-4 text-gray-300 hover:bg-gray-700 rounded mb-2 transition-colors">Email</a>
+          <a href="#" className="block py-2 px-4 text-gray-300 hover:bg-gray-700 rounded mb-2 transition-colors">Phone</a>
+        </div>
+      )}
+      
+      <main className={getThemeClasses('main')}>
+        <h1 className={getThemeClasses('title')}>Contact Us</h1>
         
-        <p className={getTextClass()}>
-          Experience the power of dynamic theming with our multi-theme switcher application. 
-          Each theme provides a unique visual experience with different layouts, fonts, and color schemes.
+        <p className={getThemeClasses('paragraph')}>
+          We would love to hear from you! Feel free to reach out using the form below.
         </p>
 
-        <button className={getButtonClass()}>
-          Get Started
-        </button>
+        <div className={getThemeClasses('card')}>
+          <form onSubmit={handleSubmit}>
+            <div className="mb-6">
+              <label htmlFor="name" className={getThemeClasses('label')}>Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                className={getThemeClasses('input')}
+                placeholder="Your full name"
+                required
+              />
+            </div>
 
-        <div className={getProductsClass()}>
-          {loading ? (
-            <div className={getTextClass()}>Loading products...</div>
-          ) : (
-            products.map((product) => (
-              <div key={product.id} className={getProductCardClass()}>
-                <img 
-                  src={product.image} 
-                  alt={product.title}
-                  className="w-full h-48 object-contain mb-4"
-                />
-                <h3 className={getProductTitleClass()}>
-                  {product.title}
-                </h3>
-                <p className={getProductTextClass()}>
-                  {product.description.substring(0, 100)}...
-                </p>
-                <div className={theme === 'theme2' ? 'text-yellow-400 font-bold text-xl' : theme === 'theme3' ? 'text-pink-600 font-bold text-xl' : 'text-blue-600 font-semibold'}>
-                  ${product.price}
-                </div>
-              </div>
-            ))
-          )}
+            <div className="mb-6">
+              <label htmlFor="email" className={getThemeClasses('label')}>Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className={getThemeClasses('input')}
+                placeholder="your.email@example.com"
+                required
+              />
+            </div>
+
+            <div className="mb-8">
+              <label htmlFor="message" className={getThemeClasses('label')}>Message</label>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                rows={6}
+                className={getThemeClasses('input')}
+                placeholder="Your message here..."
+                required
+              />
+            </div>
+
+            <button type="submit" className={getThemeClasses('button')}>
+              Send Message
+            </button>
+          </form>
+        </div>
+
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className={getThemeClasses('card')}>
+            <h3 className={theme === 'theme2' ? 'text-xl font-bold text-white mb-3' : theme === 'theme3' ? 'text-xl font-bold text-purple-800 mb-3' : 'text-xl font-semibold text-gray-800 mb-3'}>
+              Email
+            </h3>
+            <p className={theme === 'theme2' ? 'text-gray-300' : theme === 'theme3' ? 'text-purple-700' : 'text-gray-600'}>
+              hello@themeapp.com
+            </p>
+          </div>
+
+          <div className={getThemeClasses('card')}>
+            <h3 className={theme === 'theme2' ? 'text-xl font-bold text-white mb-3' : theme === 'theme3' ? 'text-xl font-bold text-purple-800 mb-3' : 'text-xl font-semibold text-gray-800 mb-3'}>
+              Phone
+            </h3>
+            <p className={theme === 'theme2' ? 'text-gray-300' : theme === 'theme3' ? 'text-purple-700' : 'text-gray-600'}>
+              +1 (555) 123-4567
+            </p>
+          </div>
         </div>
       </main>
     </div>
   );
 };
 
-export default Home;
+export default Contact;
