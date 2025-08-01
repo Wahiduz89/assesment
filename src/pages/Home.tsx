@@ -1,28 +1,23 @@
 import React, { useState, useEffect } from 'react';
-
-interface Product {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  image: string;
-}
+import { Product, fetchProducts } from '../utils/data';
 
 const Home: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('https://fakestoreapi.com/products?limit=6')
-      .then(res => res.json())
-      .then(data => {
+    const loadProducts = async () => {
+      try {
+        const data = await fetchProducts();
         setProducts(data);
+      } catch (error) {
+        console.error('Error loading products:', error);
+      } finally {
         setLoading(false);
-      })
-      .catch(err => {
-        console.error('Error fetching products:', err);
-        setLoading(false);
-      });
+      }
+    };
+
+    loadProducts();
   }, []);
 
   return (

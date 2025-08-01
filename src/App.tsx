@@ -5,7 +5,7 @@ import Header from './components/Header';
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
-import './styles/index.css';
+import './index.css';
 
 function App() {
   return (
