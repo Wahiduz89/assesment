@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTheme, Theme } from '../context/ThemeContext';
 
-const Header: React.FC = () => {
+const Header = () => {
   const { theme, setTheme } = useTheme();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  // Toggle mobile menu visibility
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  // Close mobile menu
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
   };
@@ -20,15 +22,15 @@ const Header: React.FC = () => {
         <div className="header-logo">
           ThemeApp
         </div>
-        
-        {/* Desktop Navigation */}
+
+        {/* Desktop navigation */}
         <nav className="header-nav">
           <Link to="/" className="nav-link">Home</Link>
           <Link to="/about" className="nav-link">About</Link>
           <Link to="/contact" className="nav-link">Contact</Link>
         </nav>
 
-        {/* Desktop Theme Selector */}
+        {/* Desktop theme selector */}
         <select
           value={theme}
           onChange={(e) => setTheme(e.target.value as Theme)}
@@ -39,7 +41,7 @@ const Header: React.FC = () => {
           <option value="theme3">Theme 3</option>
         </select>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile menu button */}
         <button
           onClick={toggleMobileMenu}
           className="mobile-menu-button md:hidden"
@@ -52,7 +54,7 @@ const Header: React.FC = () => {
         </button>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile menu overlay */}
       {isMobileMenuOpen && (
         <div className="mobile-menu-overlay" onClick={closeMobileMenu}>
           <nav className="mobile-menu" onClick={(e) => e.stopPropagation()}>
@@ -66,7 +68,7 @@ const Header: React.FC = () => {
                 ✕
               </button>
             </div>
-            
+
             <div className="mobile-menu-content">
               <Link to="/" className="mobile-nav-link" onClick={closeMobileMenu}>
                 Home
@@ -77,7 +79,8 @@ const Header: React.FC = () => {
               <Link to="/contact" className="mobile-nav-link" onClick={closeMobileMenu}>
                 Contact
               </Link>
-              
+
+              {/* Mobile theme selector */}
               <div className="mobile-theme-selector-container">
                 <label htmlFor="mobile-theme-select" className="mobile-theme-label">
                   Select Theme

@@ -214,8 +214,8 @@
 }
 
 .theme-theme2 .content-card,
-.theme-theme2 .product-card { 
-@apply bg-gray-800 border border-gray-700 hover:bg-gray-750;
+.theme-theme2 .product-card {
+  @apply bg-gray-800 border border-gray-700 hover:bg-gray-700;
 }
 
 .theme-theme2 .product-price {

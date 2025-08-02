@@ -1,29 +1,35 @@
 import React, { useState } from 'react';
 
-const Contact: React.FC = () => {
+// Contact page component with form and contact information
+const Contact = () => {
+  // Form state for contact form fields
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
+  // Handle form input changes
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Handle form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     alert('Message sent! (Demo only)');
-    setFormData({ name: '', email: '', message: '' });
+    setFormData({ name: '', email: '', message: '' }); // Reset form
   };
 
   return (
     <div className="page-container">
       <main className="main-content">
         <h1 className="page-title">Contact Us</h1>
-        
+
         <p className="page-description">
           We would love to hear from you! Feel free to reach out using the form below.
         </p>
 
+        {/* Contact form card */}
         <div className="content-card">
           <form onSubmit={handleSubmit}>
+            {/* Name input field */}
             <div className="form-group">
               <label htmlFor="name" className="form-label">Name</label>
               <input
@@ -38,6 +44,7 @@ const Contact: React.FC = () => {
               />
             </div>
 
+            {/* Email input field */}
             <div className="form-group">
               <label htmlFor="email" className="form-label">Email</label>
               <input
@@ -52,6 +59,7 @@ const Contact: React.FC = () => {
               />
             </div>
 
+            {/* Message textarea field */}
             <div className="form-group">
               <label htmlFor="message" className="form-label">Message</label>
               <textarea
@@ -72,6 +80,7 @@ const Contact: React.FC = () => {
           </form>
         </div>
 
+        {/* Contact information grid */}
         <div className="contact-info-grid">
           <div className="content-card">
             <h3 className="card-title">Email</h3>

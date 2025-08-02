@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Product, fetchProducts } from '../utils/data';
 
-const Home: React.FC = () => {
+const Home = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
+  // Fetch products when component mounts
   useEffect(() => {
     const loadProducts = async () => {
       try {
@@ -24,9 +25,9 @@ const Home: React.FC = () => {
     <div className="page-container">
       <main className="main-content">
         <h1 className="page-title">Welcome to ThemeApp</h1>
-        
+
         <p className="page-description">
-          Experience the power of dynamic theming with our multi-theme switcher application. 
+          Experience the power of dynamic theming with our multi-theme switcher application.
           Each theme provides a unique visual experience with different layouts, fonts, and color schemes.
         </p>
 
@@ -40,8 +41,8 @@ const Home: React.FC = () => {
           ) : (
             products.map((product) => (
               <div key={product.id} className="product-card">
-                <img 
-                  src={product.image} 
+                <img
+                  src={product.image}
                   alt={product.title}
                   className="product-image"
                 />
