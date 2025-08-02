@@ -15,12 +15,6 @@ const Contact: React.FC = () => {
 
   return (
     <div className="page-container">
-      <div className="sidebar">
-        <h3 className="sidebar-title">Contact Info</h3>
-        <a href="#" className="sidebar-link">Email</a>
-        <a href="#" className="sidebar-link">Phone</a>
-      </div>
-      
       <main className="main-content">
         <h1 className="page-title">Contact Us</h1>
         

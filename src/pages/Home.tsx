@@ -22,14 +22,6 @@ const Home: React.FC = () => {
 
   return (
     <div className="page-container">
-      <div className="sidebar">
-        <h3 className="sidebar-title">Navigation</h3>
-        <a href="#" className="sidebar-link">Dashboard</a>
-        <a href="#" className="sidebar-link">Products</a>
-        <a href="#" className="sidebar-link">Settings</a>
-        <a href="#" className="sidebar-link">Help</a>
-      </div>
-
       <main className="main-content">
         <h1 className="page-title">Welcome to ThemeApp</h1>
         

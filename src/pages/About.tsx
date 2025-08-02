@@ -3,14 +3,6 @@ import React from 'react';
 const About: React.FC = () => {
   return (
     <div className="page-container">
-      <div className="sidebar">
-        <h3 className="sidebar-title">About Sections</h3>
-        <a href="#mission" className="sidebar-link">Our Mission</a>
-        <a href="#team" className="sidebar-link">Team</a>
-        <a href="#values" className="sidebar-link">Values</a>
-        <a href="#history" className="sidebar-link">History</a>
-      </div>
-
       <main className="main-content">
         <h1 className="page-title">About ThemeApp</h1>
         
